@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import AddInternForm from './components/AddInternForm';
+import InternList from './components/InternList';
+
+const App = () => {
+  const [internList, setInternList] = useState([]);
+
+  const handleAddIntern = (intern) => {
+    setInternList(prev => ([...prev, intern]));
+  }
+
+  return <div>
+    <AddInternForm addIntern={handleAddIntern} />
+    <InternList internList={internList} />
+  </div>
 }
 
 export default App;
